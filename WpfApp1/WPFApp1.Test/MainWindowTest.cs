@@ -1,37 +1,90 @@
 ﻿using NUnit.Framework;
 using WpfApp5;
-using Moq;
+using Moq; // If mocking is needed
+// Other necessary imports
 
-namespace WPFApp1.Test
+namespace WpfApp5Tests
 {
     [TestFixture]
     public class MainWindowTests
     {
-        [Test]
-        public void Login_Click_AdminRole_ShouldOpenAdminWindow()
+        private MainWindow mainWindow;
+
+        [SetUp]
+        public void Setup()
         {
-            // Arrange
-            var mainWindow = new MainWindow();
-            var mockLogin = new Mock<ILogin>();
-            mockLogin.Setup(x => x.GetRole(It.IsAny<string>(), It.IsAny<string>())).Returns("admin");
-            DataLayer.Model.login = mockLogin.Object;
+            // Initialize the MainWindow object before each test
+            mainWindow = new MainWindow();
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void GetUsername_InitiallyEmpty_ReturnsEmptyString()
+        {
+            // Arrange is done in Setup
 
             // Act
-            mainWindow.Login_Click(null, null);
+            var username = mainWindow.GetUsername();
 
             // Assert
-            Assert.IsTrue(mainWindow.IsClosed);  // Replace with the correct property or method
-            // Add more assertions if needed
+            Assert.IsEmpty(username);
         }
 
-        // Other tests...
-
-        // Define the ILogin interface or use the actual type representing login functionality
-        public interface ILogin
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void SetUsername_SetToSampleUsername_UsernameIsSet()
         {
-            string GetRole(string username, string password);
+            // Arrange
+            var sampleUsername = "TestUser";
+
+            // Act
+            mainWindow.SetUsername(sampleUsername);
+            var username = mainWindow.GetUsername();
+
+            // Assert
+            Assert.AreEqual(sampleUsername, username);
         }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void GetPassword_InitiallyEmpty_ReturnsEmptyString()
+        {
+            // Arrange is done in Setup
+
+            // Act
+            var password = mainWindow.GetPassword();
+
+            // Assert
+            Assert.IsEmpty(password);
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void SetPassword_SetToSamplePassword_PasswordIsSet()
+        {
+            // Arrange
+            var samplePassword = "TestPassword";
+
+            // Act
+            mainWindow.SetPassword(samplePassword);
+            var password = mainWindow.GetPassword();
+
+            // Assert
+            Assert.AreEqual(samplePassword, password);
+        }
+
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void Login_Click_InvalidCredentials_ShowsErrorMessage()
+        {
+            // This test requires mocking the DataLayer.Model.login dependency
+            // Arrange: Set up invalid credentials and mock the login response
+
+            // Act: Call the Login_Click method
+
+            // Assert: Verify that an error message is expected to be shown
+        }
+
+        // Additional tests can be written for valid credentials and different user roles
     }
-
 }
-

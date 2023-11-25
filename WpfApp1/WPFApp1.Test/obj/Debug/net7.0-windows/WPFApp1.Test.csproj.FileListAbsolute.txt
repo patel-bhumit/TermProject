@@ -14,6 +14,7 @@ C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bi
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\WPFApp1.Test.runtimeconfig.json
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\WPFApp1.Test.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\WPFApp1.Test.pdb
+C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Castle.Core.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -34,6 +35,7 @@ C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bi
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Microsoft.TestPlatform.CrossPlatEngine.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Microsoft.TestPlatform.Utilities.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Microsoft.VisualStudio.TestPlatform.Common.dll
+C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Moq.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\MySqlConnector.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
 C:\Bhumit\Assigments\Term-3\softwae quality\Term Project\WpfApp1\WPFApp1.Test\bin\Debug\net7.0-windows\NuGet.Frameworks.dll
