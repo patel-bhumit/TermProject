@@ -35,7 +35,7 @@ namespace WpfApp5
             }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        public void Add_Click(object sender, RoutedEventArgs e)
         {
             string cName = CarrierName.Text;
             string DestinationCity = dCity.Text;
@@ -71,7 +71,7 @@ namespace WpfApp5
             }
         }
 
-        private void Delete_Click(object sender, EventArgs e)
+        public void Delete_Click(object sender, EventArgs e)
         {
             int.TryParse(CarrierID.Text, out Cid);
 

@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
+﻿using DataLayer.Model;
+using NUnit.Framework;
 using WpfApp5;
-using Moq; // If mocking is needed
-// Other necessary imports
+using Moq;
 
 namespace WpfApp5Tests
 {
@@ -9,12 +9,15 @@ namespace WpfApp5Tests
     public class MainWindowTests
     {
         private MainWindow mainWindow;
+        private Mock<ILogin> mockLogin;
 
         [SetUp]
         public void Setup()
         {
+            mockLogin = new Mock<ILogin>();
             // Initialize the MainWindow object before each test
             mainWindow = new MainWindow();
+            mainWindow.SetLogin(mockLogin.Object);
         }
 
         [Test]
@@ -75,16 +78,43 @@ namespace WpfApp5Tests
 
         [Test]
         [Apartment(ApartmentState.STA)]
-        public void Login_Click_InvalidCredentials_ShowsErrorMessage()
+        public void Login_Click_AdminCredentials_AdminWindowOpens()
         {
-            // This test requires mocking the DataLayer.Model.login dependency
-            // Arrange: Set up invalid credentials and mock the login response
-
-            // Act: Call the Login_Click method
-
-            // Assert: Verify that an error message is expected to be shown
+            // Arrange
+            mockLogin.Setup(m => m.GetRole(It.IsAny<string>(), It.IsAny<string>())).Returns("admin");
+            mainWindow.SetUsername("admin");
+            mainWindow.SetPassword("password");
+            // Act
+            mainWindow.Login_Click(null, null);
+            // Assert
+            // Here you need to check that the AdminWindow was opened. This might require additional changes to your code to make it testable.
+        }
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void Login_Click_BuyerCredentials_BuyerPageOpens()
+        {
+            // Arrange
+            mockLogin.Setup(m => m.GetRole(It.IsAny<string>(), It.IsAny<string>())).Returns("buyer");
+            mainWindow.SetUsername("buyer");
+            mainWindow.SetPassword("password");
+            // Act
+            mainWindow.Login_Click(null, null);
+            // Assert
+            // Here you need to check that the BuyerPage was opened. This might require additional changes to your code to make it testable.
+        }
+        [Test]
+        [Apartment(ApartmentState.STA)]
+        public void Login_Click_InvalidCredentials_ErrorMessageShown()
+        {
+            // Arrange
+            mockLogin.Setup(m => m.GetRole(It.IsAny<string>(), It.IsAny<string>())).Returns((string)null);
+            mainWindow.SetUsername("invalid");
+            mainWindow.SetPassword("invalid");
+            // Act
+            mainWindow.Login_Click(null, null);
+            // Assert
+            // Here you need to check that an error message was shown. This might require additional changes to your code to make it testable.
         }
 
-        // Additional tests can be written for valid credentials and different user roles
     }
 }
