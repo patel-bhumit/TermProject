@@ -7,7 +7,96 @@
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="Welcome Admin"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="250"/>
+            <RowDefinition Height="Auto" MinHeight="250" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  MinWidth="250"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         
+        <Label Content="Welcome Admin"></Label>
+
+        <!-- DataGrid for Carrier -->
+        <DataGrid  Name="CarrierGrid" Grid.Row="0" Grid.Column="0" />
+
+        <!-- Grid for Textboxes -->
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10,10,342,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Carrier Name -->
+            <StackPanel Grid.Row="0" Margin="0,0,10,0">
+                <Label>Carrier Name</Label>
+                <TextBox Name="CarrierName" Height="15" Width="150"/>
+            </StackPanel>
+
+            <!-- Destination City -->
+            <StackPanel Grid.Row="1" Margin="0,0,10,0">
+                <Label>Destination City</Label>
+                <TextBox Name="dCity" Height="15" Width="150"/>
+            </StackPanel>
+
+            <!-- FTLA -->
+            <StackPanel Grid.Row="2" Margin="0,0,10,0">
+                <Label>FTLA</Label>
+                <TextBox Name="FTLA" Height="15" Width="150"/>
+            </StackPanel>
+
+            <!-- LTLA -->
+            <StackPanel Grid.Row="3" Margin="0,0,10,0">
+                <Label>LTLA</Label>
+                <TextBox Name="LTLA" Height="15" Width="150"/>
+            </StackPanel>
+
+            <!-- FTLRate -->
+            <StackPanel Grid.Row="4" Margin="0,0,10,0">
+                <Label>FTLRate</Label>
+                <TextBox Name="FTLRate" Height="15" Width="150"/>
+            </StackPanel>
+
+            <!-- LTLA -->
+            <StackPanel Grid.Row="5" Margin="0,0,10,0">
+                <Label>LTLRate</Label>
+                <TextBox Name="LTLRate" Height="15" Width="150"/>
+            </StackPanel>
+
+            <!-- LTLA -->
+            <StackPanel Grid.Row="6" Margin="0,0,10,0">
+                <Label>reefCharge</Label>
+                <TextBox Name="reefCharge" Height="15" Width="150"/>
+            </StackPanel>
+            <!-- Additional Labels and Textboxes can be added similarly -->
+
+            <StackPanel Grid.Row="7" Margin="0,10,10,0">
+                <Button Content="Add" Width="30" Height="20" Click="Add_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!-- LTLA -->
+            <StackPanel Grid.Row="0" Margin="0,0,10,0">
+                <Label>Carrier ID</Label>
+                <TextBox Name="CarrierID" Height="15" Width="150"/>
+            </StackPanel>
+            <!-- Additional Labels and Textboxes can be added similarly -->
+
+            <StackPanel Grid.Row="1" Margin="0,10,10,0">
+                <Button Content="Delete" Width="30" Height="20" Click="Delete_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
