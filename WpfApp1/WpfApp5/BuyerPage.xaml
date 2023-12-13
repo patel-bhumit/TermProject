@@ -8,13 +8,15 @@
         Title="BuyerPage" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!-- DataGrid for Contract -->
-        <DataGrid Grid.Column="0" Name="ContractGrid" ClipToBounds="True" SnapsToDevicePixels="True" IsReadOnly="True" />
-        <Button Click="Button_Click" Grid.Column="1" Width="20" Height="20" >Refresh</Button>
+        <StackPanel Grid.Column="0">
+            <!-- DataGrid for Contract -->
+            <DataGrid Name="ContractGrid" IsReadOnly="True" />
 
+            <Button Content="Refresh" Click="Button_Click" HorizontalAlignment="Right" Margin="0,10,10,10" />
+        </StackPanel>
     </Grid>
 </Window>

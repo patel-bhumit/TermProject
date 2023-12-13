@@ -16,7 +16,7 @@ namespace DataLayer.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Login",
+                name: "login",
                 columns: table => new
                 {
                     Username = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
@@ -33,7 +33,7 @@ namespace DataLayer.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
-                table: "Login",
+                table: "login",
                 columns: new[] { "Username", "Password", "Role" },
                 values: new object[,]
                 {
@@ -46,7 +46,7 @@ namespace DataLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Login");
+                name: "login");
         }
     }
 }

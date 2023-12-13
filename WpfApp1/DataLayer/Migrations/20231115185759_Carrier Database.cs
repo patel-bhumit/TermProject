@@ -14,7 +14,7 @@ namespace DataLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
-                table: "Login",
+                table: "login",
                 keyColumn: "Username",
                 keyValue: "user");
 
@@ -61,7 +61,7 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Login",
+                table: "login",
                 columns: new[] { "Username", "Password", "Role" },
                 values: new object[,]
                 {
@@ -77,17 +77,17 @@ namespace DataLayer.Migrations
                 name: "Carrier");
 
             migrationBuilder.DeleteData(
-                table: "Login",
+                table: "login",
                 keyColumn: "Username",
                 keyValue: "buyer");
 
             migrationBuilder.DeleteData(
-                table: "Login",
+                table: "login",
                 keyColumn: "Username",
                 keyValue: "planner");
 
             migrationBuilder.InsertData(
-                table: "Login",
+                table: "login",
                 columns: new[] { "Username", "Password", "Role" },
                 values: new object[] { "user", "user", "user" });
         }

@@ -197,7 +197,7 @@ namespace DataLayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DataLayer.Model.Login", b =>
+            modelBuilder.Entity("DataLayer.Model.login", b =>
                 {
                     b.Property<string>("Username")
                         .HasMaxLength(50)
@@ -214,7 +214,7 @@ namespace DataLayer.Migrations
 
                     b.HasKey("Username");
 
-                    b.ToTable("Login");
+                    b.ToTable("login");
 
                     b.HasData(
                         new

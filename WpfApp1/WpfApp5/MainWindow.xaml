@@ -5,26 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp5"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Label Grid.Row="2" Grid.Column="1" Content="Username:"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Height="15" Width="250" Name="Username"/>
-        <Label Grid.Row="3" Grid.Column="1" Content="Password:"/>
-        <PasswordBox Grid.Row="3" Grid.Column="1" Margin="5" Height="15" Width="250" Name="Password" />
-        <Button Grid.Column="1" Grid.Row="4" Content="Login" Margin="5" Height="20" Width="40" Click="Login_Click" />
+        Title="Login Window" Height="300" Width="400">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel>
+            <TextBlock Text="TMS System" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <Label Content="Username:" Margin="5"/>
+            <TextBox Margin="5" Height="25" Width="250" Name="Username"/>
+
+            <Label Content="Password:" Margin="5"/>
+            <PasswordBox Margin="5" Height="25" Width="250" Name="Password" />
+
+            <Button Content="Login" Margin="5" Height="30" Width="100" Click="Login_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#3498db"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2980b9"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

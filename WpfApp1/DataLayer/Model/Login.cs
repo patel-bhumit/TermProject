@@ -3,11 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DataLayer.Model
 {
-    [Table("Login")]
-    public class Login: ILogin
+    [Table("login")]
+    public class login
     {
         [Key]
         [MaxLength(50)]
@@ -17,7 +21,7 @@ namespace DataLayer.Model
 
         public string Role { get; set; }
 
-        public string? GetRole(string username, string password)
+        public static string? GetRole(string username, string password)
         {
             using var context = new TMSDBContext();
             var login = context.Login.FirstOrDefault(l => l.Username == username);
