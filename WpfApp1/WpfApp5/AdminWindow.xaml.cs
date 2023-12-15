@@ -107,14 +107,7 @@ namespace WpfApp5
 
                     CarrierGrid.ItemsSource = context.Carrier.ToList();
 
-                    LogEntry logEntry = new LogEntry
-                    {
-                        LogLevel = "Info",
-                        Message = $"Carrier added - {cName}",
-                        Timestamp = DateTime.Now
-                    };
-                    context.LogEntries.Add(logEntry);
-                    context.SaveChanges();
+                    LogEvent("INFO", $"Carrier added by Admin!    - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
 
                     // Refresh logs
                     DisplayLogContent();
@@ -129,7 +122,7 @@ namespace WpfApp5
                 {
                     message += $"\nInner Exception: {ex.InnerException.Message}";
                 }
-
+                LogEvent("Error", $"error adding carrier by Admin!    - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -154,7 +147,7 @@ namespace WpfApp5
                             context.Entry(route).State = EntityState.Modified;
 
                             // Exclude certain properties from modification
-                            if (context.Entry(route).Property("CarrierName").IsModified == true || context.Entry(route).Property("cID").IsModified == true || context.Entry(route).Property("RouteID").IsModified == true)
+                            if (context.Entry(route).Property("CarrierName").IsModified == true && context.Entry(route).Property("cID").IsModified == true && context.Entry(route).Property("RouteID").IsModified == true)
                             {
                                 context.Entry(route).Property("RouteID").IsModified = false;
                                 context.Entry(route).Property("CarrierName").IsModified = false;
@@ -175,7 +168,7 @@ namespace WpfApp5
 
                         // Save changes to the database
                         context.SaveChanges();
-
+                        LogEvent("INFO", $"Route changes saved successfully by admin!    - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                         MessageBox.Show("Changes saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
@@ -216,15 +209,7 @@ namespace WpfApp5
                     MessageBox.Show("Carrier not found");
                 }
 
-                // Log the carrier deletion
-                LogEntry logEntry = new LogEntry
-                {
-                    LogLevel = "Info",
-                    Message = $"Carrier deleted - Carrier ID: {Cid}",
-                    Timestamp = DateTime.Now
-                };
-                context.LogEntries.Add(logEntry);
-                context.SaveChanges();
+                LogEvent("INFO", $"Carrier deleted by Admin!    - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
 
                 // Refresh logs
                 DisplayLogContent();
@@ -284,6 +269,7 @@ namespace WpfApp5
 
                         // Save the log content to the selected file
                         File.WriteAllText(saveFileDialog.FileName, logContent);
+                        LogEvent("INFO", $"Log file downloaded by Admin!    - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                         MessageBox.Show("Log file downloaded successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
@@ -416,6 +402,7 @@ namespace WpfApp5
                             File.WriteAllText(backupFilePath, output);
 
                             Console.WriteLine("Database backup successful!");
+                            LogEvent("INFO", $"Database backup successful by Admin!    - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                             MessageBox.Show("Database backup successful!", "Backup Completed", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                         else
@@ -489,6 +476,8 @@ namespace WpfApp5
                         // Save changes to the database
                         context.SaveChanges();
 
+
+                        LogEvent("INFO", $"Carrier changes saved successfully!    - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                         MessageBox.Show("Changes saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
@@ -506,6 +495,9 @@ namespace WpfApp5
             {
                 CarrierGrid.ItemsSource = null;
                 CarrierGrid.ItemsSource = TMSContext.Carrier.ToList();
+
+                LogTextBox.Text = null;
+                DisplayLogContent();
             }
         }
 
@@ -515,6 +507,9 @@ namespace WpfApp5
             {
                 RouteGrid.ItemsSource = null;
                 RouteGrid.ItemsSource = TMSContext.Route.ToList();
+
+                LogTextBox.Text = null;
+                DisplayLogContent();
             }
         }
 
