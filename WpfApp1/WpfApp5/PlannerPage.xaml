@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp5"
         mc:Ignorable="d"
-        Title="PlannerPage" Height="450" Width="800">
-    <Grid>
-        
+        Title="PlannerPage" Height="1080" Width="1920">
+    <Grid Margin="0,0,10,-6" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1" Background="#FFDDDDDD" CornerRadius="5" Margin="12,2,10,10">
+            <GroupBox Header="Orders Data" Background="Transparent">
+                <StackPanel>
+                    <DataGrid x:Name="OrdersGrid" AutoGenerateColumns="True" Margin="10"/>
+                    <Button Content="Assign Carrier" Click="AssignCarrier_Click" Margin="5,0,5,0" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </GroupBox>
+        </Border>
+
+        <Border Grid.Row="2" Background="#FFDDDDDD" CornerRadius="5" Margin="12,10,10,10">
+            <GroupBox Header="Trips Data" Background="Transparent">
+                <StackPanel>
+                    <DataGrid x:Name="TripGrid" AutoGenerateColumns="True" Margin="10"/>
+                    <Button Content="Confirm Order" Click="ConfirmOrderComplete_Click" Margin="5,0,0,0" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </GroupBox>
+        </Border>
+
+        <Border Grid.Row="3" Background="#FFDDDDDD" CornerRadius="5" Margin="12,10,10,10">
+            <GroupBox Header="Completed Orders Data" Background="Transparent">
+                <DataGrid x:Name="CompletedOrderGrid" AutoGenerateColumns="True" Margin="10"/>
+            </GroupBox>
+        </Border>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,0">
+            <Button Content="Refresh" Width="82" Height="20" Click="Button_Click" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+            <Button Content="Past Two Week Invoice" Click="ReportPastTwoWeeksButton_Click" Margin="5,0,0,0"/>
+            <Button Content="All Invoice" Click="ReportAllTimeButton_Click" Margin="5,0,0,0"/>
+        </StackPanel>
+
+        <Button Grid.Row="0" Content="Logout" Click="LogoutButton_Click" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

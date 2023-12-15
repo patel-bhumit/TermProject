@@ -5,27 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp5"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
-    <Grid>
+        Title="AdminWindow" Height="1080" Width="1920">
+    <Grid Margin="0,0,10,-6" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" MinHeight="250"/>
-            <RowDefinition Height="Auto" MinHeight="250"/>
+            <RowDefinition MinHeight="250"/>
+            <RowDefinition Height="Auto" MinHeight="361.68"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="250"/>
-            <ColumnDefinition Width="Auto" MinWidth="355"/>
-            <ColumnDefinition Width="Auto" MinWidth="355"/>
+            <ColumnDefinition Width="Auto" MinWidth="519.477"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Welcome Admin" HorizontalAlignment="Center" Margin="0,5,0,218" Width="139" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Welcome Admin" HorizontalAlignment="Center" Margin="0,5,0,218" Width="140" FontSize="16" FontWeight="Bold"/>
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!-- DataGrid for Carrier -->
+            <Border Grid.Row="0" Margin="10,37,10,10" Background="#FFDDDDDD" CornerRadius="5">
+                <GroupBox Header="Carrier Data" Background="Transparent">
+                    <StackPanel Height="270" VerticalAlignment="Center">
+                        <DataGrid Name="CarrierGrid" CanUserAddRows="False" Height="228" Margin="0,0,-2,0" />
 
-        <!-- DataGrid for Carrier -->
-        <Border Grid.Row="0" Grid.Column="0" Margin="10,37,10,10" Background="#FFDDDDDD" CornerRadius="5">
-            <GroupBox Header="Carrier Data" Background="Transparent">
-                <DataGrid Name="CarrierGrid" CanUserAddRows="False" Height="247" Margin="0,0,-2,0"/>
-            </GroupBox>
-        </Border>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="139" >
+                            <Button Content="SaveChanges" Width="82" Height="20" Click="SaveChangesButton_Click"/>
+                            <Button Content="Refresh" Width="57" Height="20" Click="Refresh_Click" RenderTransformOrigin="1.832,0.737"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </Border>
+
+            <Border Grid.Row="1" Margin="10,28,10,10" Background="#FFDDDDDD" CornerRadius="5">
+                <UIElement.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </UIElement.RenderTransform>
+                <GroupBox Header="Route Data" Background="Transparent" >
+                    <StackPanel Height="288" Margin="10,0,0,0" VerticalAlignment="Top">
+                        <DataGrid x:Name="RouteGrid" CanUserAddRows="False" Height="228" Width="1154">
+                            <UIElement.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </UIElement.RenderTransform>
+                        </DataGrid>
+
+                        <!-- Grid for Route -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="139" >
+                            <Button Content="SaveChanges" Width="82" Height="20" Click="SaveChangesRouteButton_Click"/>
+                            <Button Content="Refresh" Width="57" Height="20" Click="RefreshRoute_Click" RenderTransformOrigin="1.832,0.737"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </Border>
+
+        </Grid>
 
         <!-- Grid for Textboxes -->
         <Border Grid.Row="1" Grid.Column="0" Margin="10,10,10,10" BorderThickness="1" CornerRadius="5">
@@ -92,8 +135,8 @@
             </GroupBox>
         </Border>
 
-        <Border Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="172" Background="#FFEEEEEE" BorderBrush="#FF757575" BorderThickness="1" CornerRadius="5">
-            <GroupBox Header="Delete Section" Background="Transparent">
+        <Border Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Height="98" Width="192" Background="#FFEEEEEE" BorderBrush="#FF757575" BorderThickness="1" CornerRadius="5" Margin="0,234,0,0">
+            <GroupBox Header="Delete Section" Background="Transparent" Margin="0,-1,0,1">
                 <StackPanel>
                     <!-- Carrier ID -->
                     <StackPanel Margin="0,0,10,0">
@@ -110,10 +153,46 @@
             </GroupBox>
         </Border>
 
-        <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="94" Width="172" Background="#FFEEEEEE" BorderBrush="#FF757575" BorderThickness="1" CornerRadius="5" Margin="90,68,0,0">
+        <Border Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Height="94" Background="#FFEEEEEE" BorderBrush="#FF757575" BorderThickness="1" CornerRadius="5" Margin="0,68,0,0" HorizontalAlignment="Center" Width="192">
             <GroupBox Header="Backup Section" Background="Transparent">
-                <Button Content="Backup" Width="48" Height="23" />
+                <Button Content="Backup Database" Click="BackupDatabase_Click" Grid.Column="2" Grid.Row="1" Height="23" Margin="28,0,28,0"/>
             </GroupBox>
         </Border>
+
+
+        <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Height="257" Width="380" Background="#FFEEEEEE" BorderBrush="#FF757575" BorderThickness="1" CornerRadius="5" Margin="0,37,0,0">
+            <GroupBox Header="Backup Section" Background="Transparent">
+                <StackPanel>
+                    <TextBox x:Name="LogTextBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" Height="210" />
+                    <!-- Button to download log file -->
+                    <Button Content="Download Log"  Click="DownloadLog_Click" Grid.Column="1" Width="100"/>
+
+                </StackPanel>
+            </GroupBox>
+        </Border>
+
+
+        <Border Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="179" Width="380" Background="#FFEEEEEE" BorderBrush="#FF757575" BorderThickness="1" CornerRadius="5" Margin="0,437,0,0">
+            <GroupBox Header="ChangeIp" Background="Transparent" Margin="0,0,0,9">
+                <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,0,-2,0" Height="102">
+
+                    <TextBlock Text="Change IP and Ports" FontWeight="Bold" FontSize="14" Margin="0,0,0,10"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                        <TextBlock Text="New IP Address:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <TextBox x:Name="ipAddressTextBox" Width="150"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                        <TextBlock Text="New Port:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <TextBox x:Name="portTextBox" Width="70"/>
+                    </StackPanel>
+
+                    <Button Content="Apply Changes" Click="ApplyIPPortChanges_Click"/>
+                </StackPanel>
+            </GroupBox>
+        </Border>
+
+        <Button Grid.Row="0" Content="Log Out" Width="82" Height="20" Click="LogoutButton_Click" Grid.Column="1" Margin="0,36,48,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

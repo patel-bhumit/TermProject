@@ -5,18 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp5"
         mc:Ignorable="d"
-        Title="BuyerPage" Height="450" Width="800">
-    <Grid>
+        Title="BuyerPage" Height="1080" Width="1920">
+    <Grid Margin="0,0,10,-6" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.Column="0" Margin="0,30,0,44">
             <!-- DataGrid for Contract -->
-            <DataGrid Name="ContractGrid" IsReadOnly="True" />
+            <Button Content="Log Out" Width="82" Height="20" Click="LogoutButton_Click" HorizontalAlignment="Right"/>
+            <!-- DataGrid for Contract -->
+            <Border Margin="10" Background="#FFDDDDDD" CornerRadius="5">
+                <GroupBox Header="Contract Data" Background="Transparent">
+                    <StackPanel>
+                        <DataGrid x:Name="ContractGrid" IsReadOnly="True" SelectionMode="Extended" />
 
-            <Button Content="Refresh" Click="Button_Click" HorizontalAlignment="Right" Margin="0,10,10,10" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                            <Button Content="Refresh" Width="82" Height="20" Click="Button_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </Border>
+
+            <Border Margin="10" Background="#FFDDDDDD" CornerRadius="5">
+                <GroupBox Header="Completed Order Data" Background="Transparent">
+                    <StackPanel>
+                        <DataGrid x:Name="CompletedOrderGrid" IsReadOnly="True" SelectionMode="Extended" />
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                            <Button Content="Refresh" Width="82" Height="20" Click="Button_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                <Button Content="Add Customer" Width="200" Click="AddCustomer_Click"/>
+                <Button Content="Initiate New Order" Width="200" Click="InitiateOrder_Click"/>
+                <Button Content="Generate Invoice" Width="200" Click="GenerateInvoiceButton_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Model.DataLayer.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,6 +23,13 @@ namespace DataLayer.Model
         public double FTLARate { get; set; }
         public double LTLRate { get; set; }
         public double reefCharge { get; set; }
+
+        // Add a foreign key property
+        [ForeignKey("City")]
+        public int CityId { get; set; }
+
+        // Navigation property
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }

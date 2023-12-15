@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using DataLayer.Context;
+using System;
+using System.Windows;
+using DataLayer.Model;
 
 namespace WpfApp5
 {
@@ -41,28 +44,69 @@ namespace WpfApp5
             string username = Username.Text;
             string password = Password.Password;
 
-            // check if the username and password are correct
-            if (DataLayer.Model.login.GetRole(username, password) == "admin")
-            {
-                AdminWindow adminWindow1 = new AdminWindow();
-                adminWindow1.Show();  // Show the AdminPage
-                this.Close();      // Close the current login window if needed
-            }
-            else if (DataLayer.Model.login.GetRole(username, password) == "buyer")
-            {
-                // if they are not, show an error message
-                BuyerPage buyerPage1 = new BuyerPage();
-                buyerPage1.Show();  // Show the buyerPage
-                this.Close();      // Close the current login window if needed
-                IsAdminWindowVisible = true;
-            }
+                // Check if the username and password are correct
+            string role = DataLayer.Model.login.GetRole(username, password);
 
+            if (role != null)
+            {
+                LogEvent("INFO", $"User '{username}' logged in.   - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+
+                if (role == "admin")
+                {
+                    AdminWindow adminWindow1 = new AdminWindow();
+                    adminWindow1.Show();
+                    this.Close();
+                }
+                else if (role == "buyer")
+                {
+                    BuyerPage buyerPage1 = new BuyerPage();
+                    buyerPage1.Show();
+                    this.Close();
+                    IsAdminWindowVisible = true;
+                }
+
+                else if (role == "planner")
+                {
+                    PlannerPage plannerPage1 = new PlannerPage();
+                    plannerPage1.Show();
+                    this.Close();
+                    IsAdminWindowVisible = true;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username or password");
+                }
+            }
             else
             {
-                // if they are not, show an error message
+                // Log failed login attempt
+                LogEvent("WARN", $"Failed login attempt for user '{username}'.  - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                 MessageBox.Show("Invalid username or password");
             }
-            
+        }
+
+        private void LogEvent(string logLevel, string message)
+        {
+            try
+            {
+                using (var context = new TMSDBContext())
+                {
+                    var logEntry = new LogEntry
+                    {
+                        Timestamp = DateTime.Now,
+                        LogLevel = logLevel,
+                        Message = message
+                    };
+
+                    context.LogEntries.Add(logEntry);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle and log the error
+                Console.WriteLine($"Error logging event to database: {ex.Message}    - {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+            }
         }
     }
 }
